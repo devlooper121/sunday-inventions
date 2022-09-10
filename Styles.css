@@ -1,0 +1,64 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0e3743;
+
+}
+main{
+    width: 700px;
+    height: 450px;
+    border: 2px solid #565656;
+    padding: 1rem;
+}
+
+.bubble{
+    font-size: 5rem;
+    display: inline-block;
+    color: #1f66bc;
+    font-weight: 900;
+    transition: all 800ms ;
+}
+.rubberAnimation{
+    color: #b3229d;
+    animation: rubber 800ms;
+    animation-timing-function: ease, step-start, cubic-bezier(0.1, 0.7, 1.0, 0.1);;
+    animation-fill-mode: both;
+}
+@keyframes rubber {
+    from{
+        transform: scale(1);
+    }
+    20%{
+        transform: scale(1.07, .6);
+    }
+    35%{
+        transform: scale(1.09, .4); 
+    }
+    50%{
+        transform: scale(.844, 1.2);
+        
+    }
+    65%{
+        transform: scale(1.07, .9);
+        
+    }
+    80%{
+        transform: scale(.966, 1.07);
+        
+    }
+    90%{
+        transform: scale(1.05, 1);
+        
+    }
+    to{
+        transform: scale(1);
+    }
+    
+}

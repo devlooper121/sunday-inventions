@@ -1,0 +1,48 @@
+
+
+.bubble{
+    font-family: 'Roboto Slab', serif;
+    font-size: 4rem;
+    display: inline-block;
+    color: #1f66bc;
+    font-weight: 900;
+    transition: all 700ms ;
+    margin: 2px;
+}
+.rubberAnimation{
+    color: #b3229d;
+    animation: rubber 700ms;
+    animation-timing-function: ease, step-start ;
+    animation-fill-mode: both;
+}
+@keyframes rubber {
+    from{
+        transform: scale(1);
+    }
+    20%{
+        transform: scale(1.07, .6);
+    }
+    35%{
+        transform: scale(1.09, .4); 
+    }
+    50%{
+        transform: scale(.844, 1.2);
+        
+    }
+    65%{
+        transform: scale(1.07, .9);
+        
+    }
+    80%{
+        transform: scale(.966, 1.07);
+        
+    }
+    90%{
+        transform: scale(1.05, 1);
+        
+    }
+    to{
+        transform: scale(1);
+    }
+    
+}

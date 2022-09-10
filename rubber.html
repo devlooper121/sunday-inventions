@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubber</title>
+    <link rel="stylesheet" href="./Styles.css">
+</head>
+<body>
+    <main>
+        <spain class="bubble">A</spain>
+        <spain class="bubble">p</spain>
+        <spain class="bubble">p</spain>
+        <spain class="bubble">l</spain>
+        <spain class="bubble">e</spain>
+
+    </main>
+    <script>
+        var el = document.getElementsByClassName("bubble");
+        for (let i = 0; i < el.length; i++) {
+            console.log(el[i]);
+            el[i].addEventListener("mouseover", (e) => {
+                console.log("in");
+                e.target.classList.add("rubberAnimation");
+                setTimeout(() => {
+                    e.target.classList.remove("rubberAnimation")
+                }, 800)
+            })
+        }
+    </script>
+</body>
+</html>
