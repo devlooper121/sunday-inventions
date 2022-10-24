@@ -294,7 +294,7 @@
         // gravity
         let x_axis = 50;
         let s = 0;
-        let u = 9;
+        let u =7;
         let g = -0.0370362789703;
         let t = 1;
         let vf = 0;
@@ -302,6 +302,11 @@
         // 1px/1ms
         let c = 0;
         let vi = 10;
+        let e = .6; // normal ground coefficient of restitution
+        
+        let y_axis = 0;
+        let uy = 3;
+        let sy = 0;
         setInterval(()=>{
             // up motion
             s = u * t + (1 / 2) * g * t * t;
@@ -310,26 +315,36 @@
             // console.log(vf);
             block.style.bottom = `${x_axis+s}px`;
             if(x_axis+s < 0){
-                u = Math.abs(vi)*.9;
+                u = Math.abs(vi)*e;
                 vi = u;
-                t = 1;
+                t = 0;
                 s = 0;
                 x_axis = 0;
+                // console.log(sy);A
             }else if ( x_axis+s > 850){
                 vi = u;
-                u = -1*Math.abs(vf)*.9;
-                t = 1;
+                u = -1*Math.abs(vf)*e;
+                t = 0;
                 s = 0;
                 x_axis = 850;
                 console.log('up');
-            }else{
-                t++;
             }
-            
-            
 
-        }, 5);
+            t++;
+        }, 1);
+        let t2 = 0;
+        setInterval(() => {
+
+            // horizontal motion
+            sy = uy * t2;
             
+            // console.log(vf);
+            block.style.left = `${y_axis + sy}px`;
+            
+            t2++;
+            }, 1);
+        
+ 
     </script>
 </body>
 </html>
