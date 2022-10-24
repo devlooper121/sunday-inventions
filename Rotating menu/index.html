@@ -294,34 +294,39 @@
         // gravity
         let x_axis = 50;
         let s = 0;
-        let u = 10;
+        let u = 9;
         let g = -0.0370362789703;
         let t = 1;
-        let vf = 10;
+        let vf = 0;
         // units
         // 1px/1ms
         let c = 0;
+        let vi = 10;
         setInterval(()=>{
             // up motion
             s = u * t + (1 / 2) * g * t * t;
-            
+            // velocity transfer
+            vf = Math.sqrt(u*u + 2*g*s);
+            // console.log(vf);
             block.style.bottom = `${x_axis+s}px`;
-            if(u > 0 && Math.floor(s) < 0){
-                // reset motion with reduce speed
+            if(x_axis+s < 0){
+                u = Math.abs(vi)*.9;
+                vi = u;
                 t = 1;
                 s = 0;
-                u = -1*.9*u;
-                x_axis = 50;
-            }else if( Math.floor(s) > 850){
-                x_axis=950;
+                x_axis = 0;
+            }else if ( x_axis+s > 850){
+                vi = u;
+                u = -1*Math.abs(vf)*.9;
                 t = 1;
-                vf = -Math.sqrt(u*u + 2*g*s);
-                u = vf;
                 s = 0;
-            }
-            else{
+                x_axis = 850;
+                console.log('up');
+            }else{
                 t++;
             }
+            
+            
 
         }, 5);
             
