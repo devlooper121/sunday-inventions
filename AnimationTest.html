@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .main{
+        width: 600px;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin:auto;
+    }
+    .box{
+        width: 150px;
+        height: 300px;
+        background: #56a9f6;
+        animation-name: run, raise;
+        animation-duration: 2000ms;
+        animation-delay: 0ms;
+        opacity: 0;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+    }
+    @keyframes run {
+        from{
+            transform: translateX(-600px);
+            opacity: 0;
+        }
+        to{
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    @keyframes raise {
+        from{
+            transform: translateY(0);
+            opacity: 0;
+        }
+        to{
+            transform: translateY(20px);
+            opacity: 1;
+        }
+    }
+</style>
+<body>
+    <div class="main">
+        <div class="box"></div>
+        <div class="box"></div>
+
+    </div>
+</body>
+</html>
