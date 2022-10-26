@@ -292,58 +292,100 @@
         
         let block = document.getElementById('block');
         // gravity
-        let x_axis = 50;
+        let xShift = 0;
+        let yShift =    0;
+        let x_axis =    0;
         let s = 0;
-        let u =7;
+        let u =8;
         let g = -0.0370362789703;
         let t = 1;
         let vf = 0;
         // units
         // 1px/1ms
         let c = 0;
-        let vi = 10;
+        let vi = 1;
         let e = .6; // normal ground coefficient of restitution
+        let roof = 850;
         
         let y_axis = 0;
-        let uy = 3;
+        let uy = 6;
         let sy = 0;
-        setInterval(()=>{
+        let psy = 0;
+        let t2 = 0;
+        let ar = g/10; // air resistance
+        let rw = 1780;
+        let lw = 0;
+        let vyf = 0;
+        let vyi = 0;
+        let id = setInterval(()=>{
             // up motion
             s = u * t + (1 / 2) * g * t * t;
             // velocity transfer
             vf = Math.sqrt(u*u + 2*g*s);
             // console.log(vf);
-            block.style.bottom = `${x_axis+s}px`;
+            block.style.bottom = `${x_axis+s+xShift}px`;
             if(x_axis+s < 0){
                 u = Math.abs(vi)*e;
                 vi = u;
                 t = 0;
                 s = 0;
                 x_axis = 0;
-                // console.log(sy);A
-            }else if ( x_axis+s > 850){
+                xShift = 0;
+            }else if ( x_axis+s > roof){
                 vi = u;
                 u = -1*Math.abs(vf)*e;
                 t = 0;
                 s = 0;
-                x_axis = 850;
+                x_axis = roof;
                 console.log('up');
+                xShift = 0;
             }
+            // horizontal motion
+            // ar sign is always opposite to uy
+            if(uy > 0){
+                ar = ar;
+            }else{
+                ar = -ar;
+            }
+            vyf = Math.sqrt(uy * uy + 2 * ar * sy);
+            sy = uy*t2 + (1 / 2) * ar*t2*t2-psy;
+            if(y_axis === lw && sy > 0)
+                psy += sy;
+            if(y_axis === rw && sy < 0){
+                // console.log("sy", sy);
+                psy += sy;
+            }
+            console.log(uy);
+            // console.log(vf);
+            block.style.left = `${y_axis+psy+yShift}px`;
+            
+            if (y_axis + psy > rw) {
+                yShift = 0;
+                uy = -1 * Math.abs(vyf) * e;
+                y_axis = rw;
+                sy = 0;
+                psy = 0;
+                t2 = 0;
+                
+            }else if (y_axis + psy < 0) {
+                yShift = 0;
+                ar = ar;
+                uy = 1 * Math.abs(vyf) * e;
+                y_axis = lw;
+                sy = 0;
+                psy = 0;
+                t2 = 0;
+
+            }
+            t2++;
 
             t++;
+            if (t2 === 3000) {
+                clearInterval(id);
+            }
         }, 1);
-        let t2 = 0;
-        setInterval(() => {
 
-            // horizontal motion
-            sy = uy * t2;
-            
-            // console.log(vf);
-            block.style.left = `${y_axis + sy}px`;
-            
-            t2++;
-            }, 1);
-        
+       
  
     </script>
 </body>
