@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gravity</title>
+</head>
+<style>
+    #obj {
+        background: url('../Rotating-menu/football.png');
+        width: 150px;
+        height: 150px;
+        background-size:cover;
+        border: none;
+        position: absolute;
+    }
+    #space2d {
+        border: 1px solid black;
+    }
+</style>
+<body>
+    <div id="space2d">
+        <div id="obj"></div>
+    </div>
+    <script>
+        const space2d = document.getElementById('space2d');
+        const object = document.getElementById('obj');
+        console.log(object.style);
+        const config = {
+            rightWall : 2540,
+            leftWall : 0,
+            topWall : 1300,
+            bottomWall : 0, 
+        }
+        const    {
+
+        }
+        const SetXY = (object, X, Y) => {
+            object.style.top = `${Y}px`;
+            object.style.left = `${X}px`;
+        }
+        const ApplyGravity = (space, config, object) => {
+            space.style.width = `${config.rightWall - config.leftWall}px`;
+            space.style.height = `${config.topWall - config.bottomWall}px`;
+            SetXY(object, 200, 200);
+        }
+
+        ApplyGravity(space2d, config, object);
+        
+    </script>
+</body>
+</html>
